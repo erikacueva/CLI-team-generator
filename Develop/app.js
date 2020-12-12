@@ -10,9 +10,52 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
+const team = [];
+
+const prompts = [
+  {
+    type: "input",
+    name: "name",
+    message: "What is the Manager's name?",
+  },
+  {
+    type: "input",
+    name: "id",
+    message: "What is the Manager's ID?",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is the Manager's email address?",
+  },
+  {
+    type: "input",
+    name: "officeNumber",
+    message: "What is the Manager's office number?",
+  },
+];
+function init() {
+  inquirer.prompt(prompts).then((response) => {
+    const manager = new Manager(
+      response.name,
+      response.id,
+      response.email,
+      response.officeNumber
+    );
+    console.log(manager);
+    team.push(manager);
+  });
+
+
+//   engineer prompt/engineer prompts/add another employee prompts
+
+// if no, render(team); save into a variable. variable goes into fs
+}
+
+init();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
